@@ -1,3 +1,9 @@
-<x-layout>
-    <p>asfsad</p>
-</x-layout>
+<x-sidebar>
+    @guest
+        <x-login-form/>
+    @endguest
+
+    @auth
+
+    @endauth
+</x-sidebar>

@@ -12,7 +12,7 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
     Route::post('/register', 'register')->name('register');
 });
 
+Route::post('/logout', [AuthController::class,'logout'])->name('logout');
 
 Route::middleware('auth')->controller()->group(function (){
-    Route::post('/logout', [AuthController::class,'logout'])->name('logout');
 });
