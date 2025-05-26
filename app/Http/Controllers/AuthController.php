@@ -27,8 +27,11 @@ class AuthController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'birth_date' => 'required|date',
+            'birth_date' => 'required|date|before_or_equal:today',
             'password' => 'required|string|min:8|confirmed',
+        ],
+        [
+            'birth_date.before_or_equal' => 'The birth date cannot be in the future.',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);

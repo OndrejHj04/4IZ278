@@ -38,8 +38,8 @@
         </form>
 
         <p class="mt-10 text-center text-sm/6 text-gray-500">
-            Nemáte účet?
-            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Vytvořte si ho zde!</a>
+            No account?
+            <a href={{route('show.register')}} class="font-semibold text-indigo-600 hover:text-indigo-500">Create one here!</a>
         </p>
     </div>
 </div>
