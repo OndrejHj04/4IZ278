@@ -17,5 +17,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::view('/', 'home')->name('home');
     Route::resource('reservations', ReservationController::class);
-    Route::resource('user', UserController::class);
+    Route::resource('users', UserController::class);
 });
