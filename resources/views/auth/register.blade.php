@@ -1,9 +1,5 @@
 <x-sidebar>
     @guest
-        <x-register-form />
+        @include('auth.components.register-form')
     @endguest
-
-    @auth
-
-    @endauth
 </x-sidebar>

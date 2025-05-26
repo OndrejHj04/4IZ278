@@ -1,9 +1,9 @@
 <x-sidebar>
     @guest
-        <x-login-form/>
-    @endguest
+        <div>no signed in</div>
+    @endauth
 
     @auth
-
+        <div>signed in</div>
     @endauth
 </x-sidebar>
