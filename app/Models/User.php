@@ -15,12 +15,4 @@ class User extends Authenticatable
     {
         return self::inRandomOrder()->first()->id;
     }
-
-    public function notifications(): HasMany {
-        return $this->hasMany(Notification::class);
-    }
-
-    public function reservations(): HasMany {
-        return $this->hasMany(Reservation::class);
-    }
 }

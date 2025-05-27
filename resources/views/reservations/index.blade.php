@@ -26,7 +26,7 @@
                             {{ $reservation->name }}
                         </x-table-cell>
                         <x-table-cell>
-                            {{ $reservation->leader }}
+                            {{ $reservation->leader->first_name }}
                         </x-table-cell>
                         <x-table-cell>
                             {{ $reservation->from_date }}

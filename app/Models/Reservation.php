@@ -15,12 +15,4 @@ class Reservation extends Model
     {
         return self::inRandomOrder()->first()->id;
     }
-
-    public function users(): HasMany {
-        return $this->hasMany(User::class);
-    }
-
-    public function leader(): HasOne {
-        return $this->hasOne(User::class);
-    }
 }
