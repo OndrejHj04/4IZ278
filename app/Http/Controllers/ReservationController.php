@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
     public function index() { 
-        return view('reservations.index');
+        $reservations = Reservation::paginate(2);
+        return view('reservations.index', ['reservations' => $reservations]);
     }
     public function create() {
         return view('reservations.create');

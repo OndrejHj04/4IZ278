@@ -1,7 +1,7 @@
 @vite('resources/css/app.css')
  
  <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-    <ul class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 flex flex-col">
+    <ul class="h-full px-3 py-4 overflow-y-auto bg-gray-800 flex flex-col">
 
           <x-list-item link="{{ route('home') }}">Home</x-list-item>
           <x-list-item link="{{ route('reservations.index') }}" createLink="{{ route('reservations.create') }}" :disabled="!auth()->check()">Reservations</x-list-item>
@@ -16,6 +16,6 @@
     </ul>
  </aside>
  
- <div class="p-4 sm:ml-64">
+ <div class="flex p-4 sm:ml-64 h-screen">
     {{ $slot }}
  </div>
