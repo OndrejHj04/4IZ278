@@ -1,3 +1,7 @@
+@php
+use App\Helpers\DateFormatter;
+@endphp
+
 <x-sidebar>
     <div class="flex-1 flex flex-col gap-2">
         <x-table dataLength="{{ count($reservations) }}">
@@ -6,7 +10,7 @@
                     Reservation name
                 </x-table-cell>
                 <x-table-cell header>
-                    Reservation leader
+                    Leader
                 </x-table-cell>
                 <x-table-cell header>
                     From
@@ -15,7 +19,7 @@
                     To
                 </x-table-cell>
                 <x-table-cell header>
-                    Created_at
+                    Created
                 </x-table-cell>
                 <x-table-cell header />
             </x-table-head>
@@ -26,16 +30,16 @@
                             {{ $reservation->name }}
                         </x-table-cell>
                         <x-table-cell>
-                            {{ $reservation->leader->first_name }}
+                            {{ $reservation->leader->first_name . ' ' . $reservation->leader->last_name }}
                         </x-table-cell>
                         <x-table-cell>
-                            {{ $reservation->from_date }}
+                            {{ DateFormatter::formatDate($reservation->from_date) }}
                         </x-table-cell>
                         <x-table-cell>
-                            {{ $reservation->to_date }}
+                            {{ DateFormatter::formatDate($reservation->to_date) }}
                         </x-table-cell>
                         <x-table-cell>
-                            {{ $reservation->created_at }}
+                            {{ DateFormatter::formatTimestamp($reservation->created_at) }}
                         </x-table-cell>
                         <x-table-cell>
                             <a href="{{route('reservations.show', $reservation->id)}}" class="text-blue-600 font-semibold hover:underline">Edit</a>
@@ -44,6 +48,5 @@
                 @endforeach
             </x-table-body>
         </x-table>
-        {{ $reservations->links() }}
     </div>
 </x-sidebar>
