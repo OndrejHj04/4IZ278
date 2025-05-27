@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ReservationController extends Controller
 {
     public function index() { 
-        $reservations = Reservation::paginate(2);
+        $reservations = Reservation::paginate(10);
         return view('reservations.index', ['reservations' => $reservations]);
     }
     public function create() {

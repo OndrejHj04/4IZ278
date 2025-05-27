@@ -1,6 +1,6 @@
 <x-sidebar>
     <div class="flex-1 flex flex-col gap-2">
-        <x-table>
+        <x-table dataLength="{{ count($reservations) }}">
             <x-table-head>
                 <x-table-cell header>
                     Reservation name
@@ -38,14 +38,12 @@
                             {{ $reservation->created_at }}
                         </x-table-cell>
                         <x-table-cell>
-                            <a href="#" class="text-blue-600 font-semibold hover:underline">Edit</a>
+                            <a href="{{route('reservations.show', $reservation->id)}}" class="text-blue-600 font-semibold hover:underline">Edit</a>
                         </x-table-cell>
                     </x-table-row>
                 @endforeach
             </x-table-body>
         </x-table>
-        <div>
-            {{ $reservations->links() }}
-        </div>
+        {{ $reservations->links() }}
     </div>
 </x-sidebar>
