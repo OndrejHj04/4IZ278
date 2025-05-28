@@ -7,7 +7,7 @@ use App\Helpers\DateFormatter;
         <x-table dataLength="{{ count($reservations) }}">
             <x-table-head>
                 <x-table-cell header>
-                    Reservation name
+                    Name
                 </x-table-cell>
                 <x-table-cell header>
                     Leader

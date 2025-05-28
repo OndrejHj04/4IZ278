@@ -4,8 +4,8 @@
     <ul class="h-full px-3 py-4 overflow-y-auto bg-gray-800 flex flex-col">
 
           <x-list-item link="{{ route('home') }}">Home</x-list-item>
-          <x-list-item link="{{ route('reservations.index') }}" createLink="{{ route('reservations.create') }}" :disabled="!auth()->check()">Reservations</x-list-item>
-          <x-list-item link="{{ route('users.index') }}" createLink="{{ route('users.create') }}"  :disabled="!auth()->check()">Users</x-list-item>
+          <x-list-item link="{{ route('reservations.index') }}" :disabled="!auth()->check()">Reservations</x-list-item>
+          <x-list-item link="{{ route('users.index') }}" :disabled="!auth()->check()">Users</x-list-item>
         
           @auth
             <form class="mt-auto" action="{{ route('logout') }}" method="POST">
