@@ -17,6 +17,17 @@ class UserController extends Controller
         return view('users.show', ['user' => $user]);
     }
     public function edit($id) { }
-    public function update(Request $request, $id) { }
+    public function update(Request $request, $id) {
+
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'birth_date' => 'required|date|before_or_equal:today',
+        ]);
+        $user = User::findOrFail($id);
+        $user->update($validated);
+
+        return redirect()->route('users.show', $user->id)->with('success', 'User updated successfully!');
+     }
     public function destroy($id) { }
 }
