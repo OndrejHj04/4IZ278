@@ -15,4 +15,9 @@ class User extends Authenticatable
     {
         return self::inRandomOrder()->first()->id;
     }
+
+    public function fullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }

@@ -11,11 +11,11 @@ class UserController extends Controller
         $users = User::paginate(10);
         return view('users.index', ['users' => $users]);
     }
-    public function create() {
-        return view('users.create');
-    }
     public function store(Request $request) { }
-    public function show($id) { }
+    public function show($id) {
+        $user = User::find($id);
+        return view('users.show', ['user' => $user]);
+    }
     public function edit($id) { }
     public function update(Request $request, $id) { }
     public function destroy($id) { }
