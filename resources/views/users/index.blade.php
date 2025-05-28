@@ -19,7 +19,7 @@ use App\Helpers\DateFormatter;
                     Role
                 </x-table-cell>
                 <x-table-cell header>
-                    Created
+                    Joined
                 </x-table-cell>
                 <x-table-cell header />
             </x-table-head>
