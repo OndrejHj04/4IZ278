@@ -1,5 +1,6 @@
 @php
 use App\Helpers\DateFormatter;
+use App\ReservationStatus;
 @endphp
 
 <x-sidebar>
@@ -9,7 +10,7 @@ use App\Helpers\DateFormatter;
                 @csrf
                 @method('PATCH')
                 <x-input name="name" :value="$reservation->name">Name</x-input>
-                <x-input name="status" :value="$reservation->status">Status</x-input>
+                <x-select name="status" :value="$reservation->status" :options="ReservationStatus::toOptions()">Status</x-select>
                 <x-input type="date" name="from_date" :value="$reservation->from_date">From</x-input>
                 <x-input type="date" name="to_date" :value="$reservation->to_date">To</x-input>
                 <x-button type="submit">Edit</x-button>

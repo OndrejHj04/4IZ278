@@ -16,6 +16,7 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::view('/', 'home')->name('home');
-    Route::resource('reservations', ReservationController::class)->except(['create']);
-    Route::resource('users', UserController::class)->except(['create']);
+
+    Route::resource('reservations', ReservationController::class)->except(['create', 'edit']);
+    Route::resource('users', UserController::class)->except(['create', 'edit', 'create', 'store']);
 });

@@ -37,9 +37,7 @@ use App\ReservationStatus;
                             {{ $reservation->leader->first_name . ' ' . $reservation->leader->last_name }}
                         </x-table-cell>
                         <x-table-cell>
-                            <form>
-                                <x-select :value="$reservation->status" :options="ReservationStatus::toOptions()" />
-                            </form>
+                            {{ $reservation->status }}
                         </x-table-cell>
                         <x-table-cell>
                             {{ DateFormatter::formatDate($reservation->from_date) }}

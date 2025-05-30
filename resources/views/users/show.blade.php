@@ -1,5 +1,6 @@
 @php
 use App\Helpers\DateFormatter;
+use App\UserRole;
 @endphp
 
 <x-sidebar>
@@ -10,6 +11,7 @@ use App\Helpers\DateFormatter;
                 @method('PATCH')
                 <x-input name="first_name" :value="$user->first_name">First name</x-input>
                 <x-input name="last_name" :value="$user->last_name">Last name</x-input>
+                <x-select name="role" :value="$user->role" :options="UserRole::toOptions()">Role</x-select>
                 <x-input type="date" name="birth_date" :value="$user->birth_date">Birth date</x-input>
                 <x-button type="submit">Edit</x-button>
             </form>
