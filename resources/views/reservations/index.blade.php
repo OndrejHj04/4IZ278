@@ -13,6 +13,9 @@ use App\Helpers\DateFormatter;
                     Leader
                 </x-table-cell>
                 <x-table-cell header>
+                    Status
+                </x-table-cell>
+                <x-table-cell header>
                     From
                 </x-table-cell>
                 <x-table-cell header>
@@ -31,6 +34,9 @@ use App\Helpers\DateFormatter;
                         </x-table-cell>
                         <x-table-cell>
                             {{ $reservation->leader->first_name . ' ' . $reservation->leader->last_name }}
+                        </x-table-cell>
+                        <x-table-cell>
+                            {{ $reservation->status }}
                         </x-table-cell>
                         <x-table-cell>
                             {{ DateFormatter::formatDate($reservation->from_date) }}
