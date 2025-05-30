@@ -37,5 +37,11 @@ class ReservationController extends Controller
         return redirect()->route('reservations.show', $reservation->id)->with('success', 'Reservation updated successfully!');
 
     }
-    public function destroy($id) { }
+
+    public function destroy($id) {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+
+        return redirect(route('reservations.index'));
+    }
 }

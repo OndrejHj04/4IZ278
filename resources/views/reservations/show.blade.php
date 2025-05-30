@@ -23,5 +23,12 @@ use App\ReservationStatus;
         @endadmin        
         <p>Created at: {{ DateFormatter::formatTimestamp($reservation->created_at) }}</p>
         <p>Updated at: {{ DateFormatter::formatTimestamp($reservation->update_at) }}</p>
+        @admin
+            <form method="POST" action="{{ route('reservations.destroy', $reservation->id)  }}">
+                @csrf
+                @method('DELETE')
+                <x-button type="submit" class="bg-red-600 hover:bg-red-500">Delete</x-button>
+            </form>
+        @endadmin
     </div>
 </x-sidebar>

@@ -18,10 +18,17 @@ use App\UserRole;
         @else
             <p>Name: {{ $user->fullName() }}</p>      
             <p>Role: {{ $user->role }}</p>
+            <p>Birth date: {{ DateFormatter::formatDate($user->birth_date) }}</p>
         @endadmin        
         <p>Email: {{ $user->email }}</p>
-        <p>Birth date: {{ DateFormatter::formatDate($user->birth_date) }}</p>
         <p>Created at: {{ DateFormatter::formatTimestamp($user->created_at) }}</p>
         <p>Updated at: {{ DateFormatter::formatTimestamp($user->update_at) }}</p>
+        @admin
+            <form method="POST" action="{{ route('users.destroy', $user->id)  }}">
+                @csrf
+                @method('DELETE')
+                <x-button type="submit" class="bg-red-600 hover:bg-red-500">Delete</x-button>
+            </form>
+        @endadmin
     </div>
 </x-sidebar>
