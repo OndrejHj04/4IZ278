@@ -12,4 +12,9 @@ enum ReservationStatus: string
     {
         return array_column(self::cases(), 'value');
     }   
+
+    public static function toOptions(): array
+    {
+        return array_map(fn($case) => $case->value, self::cases());
+    }
 }

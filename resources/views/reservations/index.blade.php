@@ -1,5 +1,6 @@
 @php
 use App\Helpers\DateFormatter;
+use App\ReservationStatus;
 @endphp
 
 <x-sidebar>
@@ -36,7 +37,9 @@ use App\Helpers\DateFormatter;
                             {{ $reservation->leader->first_name . ' ' . $reservation->leader->last_name }}
                         </x-table-cell>
                         <x-table-cell>
-                            {{ $reservation->status }}
+                            <form>
+                                <x-select :value="$reservation->status" :options="ReservationStatus::toOptions()" />
+                            </form>
                         </x-table-cell>
                         <x-table-cell>
                             {{ DateFormatter::formatDate($reservation->from_date) }}
