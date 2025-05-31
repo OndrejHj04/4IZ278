@@ -15,7 +15,7 @@
             <x-input type="password" name="password">Password</x-input>
             <x-input type="password" name="password_confirmation">Confirm password</x-input>
 
-            <x-button type="submit">Register</x-button>
+            <x-button >Register</x-button>
         </form>
 
         <p class="mt-10 text-center text-sm/6 text-gray-500">

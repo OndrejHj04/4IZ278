@@ -20,6 +20,6 @@
     </ul>
  </aside>
  
- <div class="flex p-4 sm:ml-64 h-screen gap-6">
-    {{ $slot }}
- </div>
+<div {{ $attributes->merge(["class"=>"flex p-4 sm:ml-64 h-screen gap-6" ]) }}>
+  {{ $slot }}
+</div>

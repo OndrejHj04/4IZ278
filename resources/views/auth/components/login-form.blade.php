@@ -10,7 +10,7 @@
 
             <x-input type="email" name="email">Email address</x-input>
             <x-input type="password" name="password">Password</x-input>
-            <x-button type="submit">Sign in</x-button>
+            <x-button >Sign in</x-button>
             @if ($errors->has('credentials'))
                 <p class="text-center text-red-500 font-semibold">You have provided wrong credentials!</p>
             @endif

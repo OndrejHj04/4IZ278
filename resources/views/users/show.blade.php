@@ -13,7 +13,7 @@ use App\UserRole;
                 <x-input name="last_name" :value="$user->last_name">Last name</x-input>
                 <x-select name="role" :value="$user->role" :options="UserRole::toOptions()">Role</x-select>
                 <x-input type="date" name="birth_date" :value="$user->birth_date">Birth date</x-input>
-                <x-button type="submit">Edit</x-button>
+                <x-button >Edit</x-button>
             </form>
         @else
             <p>Name: {{ $user->fullName() }}</p>      
@@ -27,7 +27,7 @@ use App\UserRole;
             <form method="POST" action="{{ route('users.destroy', $user->id)  }}">
                 @csrf
                 @method('DELETE')
-                <x-button type="submit" class="bg-red-600 hover:bg-red-500">Delete</x-button>
+                <x-button class="bg-red-600 hover:bg-red-500">Delete</x-button>
             </form>
         @endadmin
     </div>
