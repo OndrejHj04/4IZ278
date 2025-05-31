@@ -31,4 +31,24 @@ use App\ReservationStatus;
             </form>
         @endadmin
     </div>
+    <div>
+        <h2>Reservation members</h2>
+        <x-table dataLength="{{ 5 }}">
+            <x-table-body>
+                <x-table-cell>1</x-table-cell>
+                <x-table-cell>1</x-table-cell>
+                <x-table-cell>1</x-table-cell>
+            </x-table-body>
+        </x-table>
+    </div>
+    <div>
+        <h2>Add new users to reservation</h2>
+        <x-table dataLength="{{ 5 }}">
+            <x-table-body>
+                <x-table-cell>1</x-table-cell>
+                <x-table-cell>1</x-table-cell>
+                <x-table-cell>1</x-table-cell>
+            </x-table-body>
+        </x-table>
+    </div>
 </x-sidebar>
