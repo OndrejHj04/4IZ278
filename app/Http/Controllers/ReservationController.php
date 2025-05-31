@@ -17,12 +17,27 @@ class ReservationController extends Controller
         return view('reservations.create');
     }
 
-    public function store(Request $request) { }
+    public function removeMembers(Request $request, $id){
+        $reservation = Reservation::findOrFail($id);
+        $idsToKeep = array_filter(array_keys($request->all()), 'is_numeric');
+        $reservation->members()->sync($idsToKeep);
+
+        return redirect()->back();
+    }
+
+    public function addUsers(Request $request, $id){
+        $reservation = Reservation::findOrFail($id);
+        $idsToAdd = array_filter(array_keys($request->all()), 'is_numeric');
+        $reservation->members()->syncWithoutDetaching($idsToAdd);
+    
+        return redirect()->back();
+    }
 
     public function show($id) { 
-        $reservation = Reservation::find($id);
-        $reservation_members = $reservation->members()->paginate(5, ['*'], 'members');
-        $reservation_users_outside = $reservation->outsideUsers()->paginate(5, ['*'], 'outside_users');
+        $reservation = Reservation::findOrFail($id);
+
+        $reservation_members = $reservation->members()->paginate(10, ['*'], 'members');
+        $reservation_users_outside = $reservation->outsideUsers()->paginate(10, ['*'], 'outside_users');
         return view('reservations.show', ['reservation' => $reservation, 'reservation_members' => $reservation_members, 'reservation_users_outside' => $reservation_users_outside]);
     }
 

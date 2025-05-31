@@ -31,7 +31,8 @@ use App\ReservationStatus;
             </form>
         @endadmin
     </div>
-    <div>
+    <form method="POST" action="{{ route('reservations.remove-members', $reservation->id) }}" class="w-[500px] flex flex-col gap-2">
+        @csrf
         <h2 class="text-center text-xl">Reservation members</h2>
         <x-table class="mb-2" dataLength="{{ count($reservation_members) }}">
             <x-table-body>
@@ -40,16 +41,17 @@ use App\ReservationStatus;
                         <x-table-cell>{{ $member->fullName() }}</x-table-cell>
                         <x-table-cell>{{ $member->email }}</x-table-cell>
                         <x-table-cell>
-                            <input type="checkbox" />
+                            <input type="checkbox" name="{{$member->id}}" checked />
                         </x-table-cell>
                     </x-table-row>
                 @endforeach
             </x-table-body>
         </x-table>
         {{ $reservation_members->links() }}
-        <x-button :disabled="true" theme="error">Remove users</x-button>
-    </div>
-    <div>
+        <x-button theme="error" type="submit">Remove users</x-button>
+    </form>
+    <form method="POST" action="{{ route('reservations.add-users', $reservation->id) }}" class="w-[500px] flex flex-col gap-2">
+        @csrf
         <h2 class="text-center text-xl">Add new users to reservation</h2>
         <x-table class="mb-2" dataLength="{{ count($reservation_users_outside) }}">
             <x-table-body>
@@ -58,13 +60,13 @@ use App\ReservationStatus;
                         <x-table-cell>{{ $user->fullName() }}</x-table-cell>
                         <x-table-cell>{{ $user->email }}</x-table-cell>
                         <x-table-cell>
-                            <input type="checkbox" />
+                            <input type="checkbox" name="{{$user->id}}" />
                         </x-table-cell>
                     </x-table-row>
                 @endforeach
             </x-table-body>
         </x-table>
         {{ $reservation_users_outside->links() }}
-        <x-button :disabled="true">Add users</x-button>
+        <x-button type="submit">Add users</x-button>
     </div>
 </x-sidebar>
