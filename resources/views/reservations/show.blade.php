@@ -32,23 +32,39 @@ use App\ReservationStatus;
         @endadmin
     </div>
     <div>
-        <h2>Reservation members</h2>
-        <x-table dataLength="{{ 5 }}">
+        <h2 class="text-center text-xl">Reservation members</h2>
+        <x-table class="mb-2" dataLength="{{ count($reservation_members) }}">
             <x-table-body>
-                <x-table-cell>1</x-table-cell>
-                <x-table-cell>1</x-table-cell>
-                <x-table-cell>1</x-table-cell>
+                @foreach($reservation_members as $member)
+                    <x-table-row>
+                        <x-table-cell>{{ $member->fullName() }}</x-table-cell>
+                        <x-table-cell>{{ $member->email }}</x-table-cell>
+                        <x-table-cell>
+                            <input type="checkbox" />
+                        </x-table-cell>
+                    </x-table-row>
+                @endforeach
             </x-table-body>
         </x-table>
+        {{ $reservation_members->links() }}
+        <x-button class="bg-red-600 hover:bg-red-500">Remove users</x-button>
     </div>
     <div>
-        <h2>Add new users to reservation</h2>
-        <x-table dataLength="{{ 5 }}">
+        <h2 class="text-center text-xl">Add new users to reservation</h2>
+        <x-table class="mb-2" dataLength="{{ count($reservation_users_outside) }}">
             <x-table-body>
-                <x-table-cell>1</x-table-cell>
-                <x-table-cell>1</x-table-cell>
-                <x-table-cell>1</x-table-cell>
+                @foreach($reservation_users_outside as $user)
+                    <x-table-row>
+                        <x-table-cell>{{ $user->fullName() }}</x-table-cell>
+                        <x-table-cell>{{ $user->email }}</x-table-cell>
+                        <x-table-cell>
+                            <input type="checkbox" />
+                        </x-table-cell>
+                    </x-table-row>
+                @endforeach
             </x-table-body>
         </x-table>
+        {{ $reservation_users_outside->links() }}
+        <x-button>Add users</x-button>
     </div>
 </x-sidebar>

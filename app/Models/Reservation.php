@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Reservation extends Model
 {
@@ -20,5 +21,16 @@ class Reservation extends Model
     public function leader(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function members(): BelongsToMany 
+    {
+        return $this->belongsToMany(User::class, 'users_reservations');
+    }
+
+    public function outsideUsers() 
+    {
+        $memberIds = $this->members()->pluck('users.id');
+        return User::whereNotIn('id', $memberIds);
     }
 }

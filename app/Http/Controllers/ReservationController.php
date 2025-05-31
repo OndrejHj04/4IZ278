@@ -21,7 +21,9 @@ class ReservationController extends Controller
 
     public function show($id) { 
         $reservation = Reservation::find($id);
-        return view('reservations.show', ['reservation' => $reservation]);
+        $reservation_members = $reservation->members()->paginate(5, ['*'], 'members');
+        $reservation_users_outside = $reservation->outsideUsers()->paginate(5, ['*'], 'outside_users');
+        return view('reservations.show', ['reservation' => $reservation, 'reservation_members' => $reservation_members, 'reservation_users_outside' => $reservation_users_outside]);
     }
 
     public function update(Request $request, $id) {

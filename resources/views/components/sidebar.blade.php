@@ -20,6 +20,6 @@
     </ul>
  </aside>
  
- <div class="flex p-4 sm:ml-64 h-screen gap-2">
+ <div class="flex p-4 sm:ml-64 h-screen gap-6">
     {{ $slot }}
  </div>
