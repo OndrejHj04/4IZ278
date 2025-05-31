@@ -6,6 +6,10 @@
           <x-list-item link="{{ route('home') }}">Home</x-list-item>
           <x-list-item link="{{ route('reservations.index') }}" :disabled="!auth()->check()">Reservations</x-list-item>
           <x-list-item link="{{ route('users.index') }}" :disabled="!auth()->check()">Users</x-list-item>
+
+          @admin
+            <x-list-item link="{{ route('notifications.index') }}">Notifications</x-list-item>
+          @endadmin
         
           @auth
             <form class="mt-auto" action="{{ route('logout') }}" method="POST">

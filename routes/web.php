@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,4 +20,5 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('reservations', ReservationController::class)->except(['create', 'edit']);
     Route::resource('users', UserController::class)->except(['create', 'edit', 'create', 'store']);
+    Route::resource('notifications', NotificationsController::class)->only(['index', 'store', 'show']);
 });

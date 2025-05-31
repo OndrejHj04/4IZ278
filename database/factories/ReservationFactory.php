@@ -19,7 +19,7 @@ class ReservationFactory extends Factory
     {
         return [
             'name' => fake()->safeColorName(),
-            'leader' => User::getRandomUserId(),
+            'leader_id' => User::getRandomUserId(),
             'from_date' => fake()->date(),
             'to_date' => fake()->date(),
         ];
