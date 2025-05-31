@@ -27,7 +27,7 @@ use App\ReservationStatus;
             <form method="POST" action="{{ route('reservations.destroy', $reservation->id)  }}">
                 @csrf
                 @method('DELETE')
-                <x-button type="submit" class="bg-red-600 hover:bg-red-500">Delete</x-button>
+                <x-button type="submit" theme="error">Delete</x-button>
             </form>
         @endadmin
     </div>
@@ -47,7 +47,7 @@ use App\ReservationStatus;
             </x-table-body>
         </x-table>
         {{ $reservation_members->links() }}
-        <x-button class="bg-red-600 hover:bg-red-500">Remove users</x-button>
+        <x-button :disabled="true" theme="error">Remove users</x-button>
     </div>
     <div>
         <h2 class="text-center text-xl">Add new users to reservation</h2>
@@ -65,6 +65,6 @@ use App\ReservationStatus;
             </x-table-body>
         </x-table>
         {{ $reservation_users_outside->links() }}
-        <x-button>Add users</x-button>
+        <x-button :disabled="true">Add users</x-button>
     </div>
 </x-sidebar>
