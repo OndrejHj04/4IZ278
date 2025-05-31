@@ -3,6 +3,49 @@ use App\Helpers\DateFormatter;
 use App\ReservationStatus;
 @endphp
 
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        let changedMembersCount = 0
+        const membersCheckbox = document.querySelectorAll('.member-checkbox')
+        const removeMembersButton = document.querySelector('#remove-members')
+
+        membersCheckbox.forEach((checkbox)=>{
+            checkbox.addEventListener('change', ({ target })=>{
+                if(target.checked) changedMembersCount--
+                else changedMembersCount++
+
+                if(changedMembersCount > 0){
+                    removeMembersButton.innerHTML = `Remove users (${changedMembersCount})`
+                    removeMembersButton.disabled = false
+                    return
+                }
+                removeMembersButton.innerHTML = `Remove users`
+                removeMembersButton.disabled = true
+            })
+        })
+
+        let changedUserCount = 0
+        const usersCheckbox = document.querySelectorAll('.user-checkbox')
+        const removeUsersButton = document.querySelector('#add-users')
+
+        usersCheckbox.forEach((checkbox)=>{
+            checkbox.addEventListener('change', ({ target })=>{
+                if(target.checked) changedUserCount++
+                else changedUserCount--
+
+                if(changedUserCount > 0){
+                    removeUsersButton.innerHTML = `Add users (${changedUserCount})`
+                    removeUsersButton.disabled = false
+                    return
+                }
+                removeUsersButton.innerHTML = `Add users`
+                removeUsersButton.disabled = true
+            })
+        })
+    })
+    
+</script>
+
 <x-sidebar>
     <div class="space-y-3" action="">
         @admin
@@ -41,14 +84,13 @@ use App\ReservationStatus;
                         <x-table-cell>{{ $member->fullName() }}</x-table-cell>
                         <x-table-cell>{{ $member->email }}</x-table-cell>
                         <x-table-cell>
-                            <input type="checkbox" name="{{$member->id}}" checked />
+                            <input type="checkbox" class="member-checkbox" name="{{$member->id}}" checked />
                         </x-table-cell>
                     </x-table-row>
                 @endforeach
             </x-table-body>
         </x-table>
-        {{ $reservation_members->links() }}
-        <x-button theme="error" type="submit">Remove users</x-button>
+        <x-button disabled theme="error" id="remove-members">Remove users</x-button>
     </form>
     <form method="POST" action="{{ route('reservations.add-users', $reservation->id) }}" class="w-[500px] flex flex-col gap-2">
         @csrf
@@ -60,13 +102,12 @@ use App\ReservationStatus;
                         <x-table-cell>{{ $user->fullName() }}</x-table-cell>
                         <x-table-cell>{{ $user->email }}</x-table-cell>
                         <x-table-cell>
-                            <input type="checkbox" name="{{$user->id}}" />
+                            <input type="checkbox" class="user-checkbox" name="{{$user->id}}" />
                         </x-table-cell>
                     </x-table-row>
                 @endforeach
             </x-table-body>
         </x-table>
-        {{ $reservation_users_outside->links() }}
-        <x-button type="submit">Add users</x-button>
+        <x-button disabled type="submit" id="add-users">Add users</x-button>
     </div>
 </x-sidebar>
