@@ -14,11 +14,6 @@ class NotificationsController extends Controller
         return view('notifications.index', ['notifications' => $notifications]);
     }
 
-    public function show($id) { 
-        $notification = Notification::find($id);
-        return view('notifications.show', ['notifications' => $notification]);
-    }
-
     public function read($id) { 
         $notification = Notification::findOrFail($id);
 

@@ -15,14 +15,6 @@ class ReservationController extends Controller
         return view('reservations.index', ['reservations' => $reservations]);
     }
 
-    public function removeMembers(Request $request, $id){
-        $reservation = Reservation::findOrFail($id);
-        $idsToKeep = array_filter(array_keys($request->all()), 'is_numeric');
-        $reservation->members()->sync($idsToKeep);
-
-        return redirect()->back();
-    }
-
     public function store(Request $request){
         $validated = $request->validate([
             'name' => 'required|string|min:4|max:255',
@@ -38,23 +30,6 @@ class ReservationController extends Controller
 
     public function create(Request $request){
         return view('reservations.create');
-    }
-
-
-    public function addUsers(Request $request, $id){
-        $reservation = Reservation::findOrFail($id);
-        $idsToAdd = array_filter(array_keys($request->all()), 'is_numeric');
-        $reservation->members()->syncWithoutDetaching($idsToAdd);
-    
-        return redirect()->back();
-    }
-
-    public function signOut(Request $request, $id){
-        $reservation = Reservation::findOrFail($id);
-        $user_id = $request->user_id;
-        $reservation->members()->detach($user_id);
-
-        return redirect()->back();
     }
 
     public function show($id) { 
@@ -93,4 +68,29 @@ class ReservationController extends Controller
 
         return redirect(route('reservations.index'));
     }
+
+    public function removeMembers(Request $request, $id){
+        $reservation = Reservation::findOrFail($id);
+        $idsToKeep = array_filter(array_keys($request->all()), 'is_numeric');
+        $reservation->members()->sync($idsToKeep);
+
+        return redirect()->back();
+    }
+
+    public function addUsers(Request $request, $id){
+        $reservation = Reservation::findOrFail($id);
+        $idsToAdd = array_filter(array_keys($request->all()), 'is_numeric');
+        $reservation->members()->syncWithoutDetaching($idsToAdd);
+
+        return redirect()->back();
+    }
+
+    public function signOut(Request $request, $id){
+        $reservation = Reservation::findOrFail($id);
+        $user_id = $request->user_id;
+        $reservation->members()->detach($user_id);
+
+        return redirect()->back();
+    }
+
 }
