@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('/notifications/{id}/read', [NotificationsController::class, 'read'])->name('notifications.read');
 
-    Route::resource('reservations', ReservationController::class)->except(['create', 'edit']);
+    Route::resource('reservations', ReservationController::class)->except(['edit']);
     Route::resource('users', UserController::class)->except(['create', 'edit', 'create', 'store']);
     Route::resource('notifications', NotificationsController::class)->only(['index', 'store', 'show']);
 });

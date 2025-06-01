@@ -25,6 +25,11 @@ class ReservationController extends Controller
         dd('test');
     }
 
+    public function create(Request $request){
+        return view('reservations.create');
+    }
+
+
     public function addUsers(Request $request, $id){
         $reservation = Reservation::findOrFail($id);
         $idsToAdd = array_filter(array_keys($request->all()), 'is_numeric');
