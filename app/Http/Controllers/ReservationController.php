@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -22,7 +23,16 @@ class ReservationController extends Controller
     }
 
     public function store(Request $request){
-        dd('test');
+        $validated = $request->validate([
+            'name' => 'required|string|min:4|max:255',
+            'from_date' => 'required|date|before:to_date',
+            'to_date' => 'required|date|after:from_date',
+        ]);
+
+        $validated['leader_id'] = Auth::user()->id;
+        Reservation::create($validated);
+
+        return redirect()->route('reservations.index');
     }
 
     public function create(Request $request){
@@ -56,7 +66,7 @@ class ReservationController extends Controller
 
     public function update(Request $request, $id) {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:4|max:255',
             'status' => 'required',
             'from_date' => 'required|date|before:to_date',
             'to_date' => 'required|date|after:from_date',
