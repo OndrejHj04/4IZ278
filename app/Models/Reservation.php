@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Helpers\DateFormatter;
 
 class Reservation extends Model
 {
@@ -32,5 +33,9 @@ class Reservation extends Model
     {
         $memberIds = $this->members()->pluck('users.id');
         return User::whereNotIn('id', $memberIds);
+    }
+
+    public function date() {
+        return DateFormatter::formatDate($this->from_date) . ' - ' . DateFormatter::formatDate($this->to_date);
     }
 }

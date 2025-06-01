@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
@@ -16,7 +17,7 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::view('/', 'home')->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::post('/reservations/{id}/remove-members', [ReservationController::class, 'removeMembers'])->name('reservations.remove-members');
     Route::post('/reservations/{id}/add-users', [ReservationController::class, 'addUsers'])->name('reservations.add-users');

@@ -108,5 +108,5 @@ use App\ReservationStatus;
             </x-table-body>
         </x-table>
         <x-button disabled  id="add-users">Add users</x-button>
-    </div>
+    </form>
 </x-sidebar>
