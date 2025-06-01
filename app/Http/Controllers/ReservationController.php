@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +73,14 @@ class ReservationController extends Controller
             'to_date' => 'required|date|after:from_date',
         ]);
         $reservation = Reservation::findOrFail($id);
+
+        if($reservation->status !== $validated['status']){
+            Notification::create([
+                'user_id' => $reservation->leader->id,
+                'reservation_id' => $reservation->id,
+                'content' => 'Status rezervace'. ' ' . $reservation->name . ' ' . 'byl změněn na' . ' ' . $reservation->status . '.'
+            ]);
+        }
         $reservation->update($validated);
 
         return redirect()->route('reservations.show', $reservation->id)->with('success', 'Reservation updated successfully!');

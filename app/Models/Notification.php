@@ -11,7 +11,8 @@ class Notification extends Model
 {
     use HasFactory;
     public $timestamps = false;
-
+    protected $guarded = [];
+    
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
