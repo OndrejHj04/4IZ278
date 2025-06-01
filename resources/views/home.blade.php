@@ -43,7 +43,7 @@ use App\Helpers\DateFormatter;
     </div>
 
     <div method="POST" class="flex flex-col gap-3">
-        <h2 class="text-center text-xl">Future reservations</h2>
+        <h2 class="text-center text-xl">All future reservations</h2>
         <x-table class="mb-2" dataLength="{{ count($future_reservations) }}">
             <x-table-body>
                 @foreach($future_reservations as $reservation)
