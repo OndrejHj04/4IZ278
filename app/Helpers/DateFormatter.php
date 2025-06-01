@@ -14,4 +14,9 @@ class DateFormatter
     {
         return Carbon::parse($dateTime)->format('H:i, d. m. Y');
     }
+
+    public static function timeFromNow($dateTime)
+    {
+        return Carbon::parse($dateTime)->diffForHumans();
+    }
 }
