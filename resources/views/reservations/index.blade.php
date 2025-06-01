@@ -49,7 +49,7 @@ use App\ReservationStatus;
                             {{ DateFormatter::formatTimestamp($reservation->created_at) }}
                         </x-table-cell>
                         <x-table-cell>
-                            <a href="{{route('reservations.show', $reservation->id)}}" class="text-blue-600 font-semibold hover:underline">Edit</a>
+                            <a href="{{route('reservations.show', $reservation->id)}}" class="text-blue-600 font-semibold underline">Detail</a>
                         </x-table-cell>
                     </x-table-row>
                 @endforeach

@@ -33,7 +33,7 @@ use App\Helpers\DateFormatter;
                                 @csrf
                                 @method('DELETE')
                                 <input hidden name="user_id" value="{{ Auth::user()->id }}" />
-                                <button class="text-red-500 underline font-semibold cursor-pointer">sign out</button>
+                                <button class="text-red-500 underline font-semibold cursor-pointer">Sign out</button>
                             </form>
                         </x-table-cell>
                     </x-table-row>
@@ -51,7 +51,7 @@ use App\Helpers\DateFormatter;
                         <x-table-cell>{{ $reservation->name }}</x-table-cell>
                         <x-table-cell>začíná za: {{ DateFormatter::timeFromNow($reservation->from_date) }}</x-table-cell>
                         <x-table-cell>
-                            <a class="text-blue-600 font-semibold underline" href="{{ route('reservations.show', $reservation->id) }}">detail</a>
+                            <a class="text-blue-600 font-semibold underline" href="{{ route('reservations.show', $reservation->id) }}">Detail</a>
                         </x-table-cell>
                     </x-table-row>
                 @endforeach
@@ -78,7 +78,7 @@ use App\Helpers\DateFormatter;
                                 <form method="POST" action="{{ route('notifications.read', $notification->id)  }}">
                                     @csrf
                                     @method('PATCH')
-                                    <button class="text-green-600 font-semibold underline cursor-pointer">přečteno</button>
+                                    <button class="text-green-600 font-semibold underline cursor-pointer">Přečíst</button>
                                 </form>
                             @endif
                         </x-table-cell>
