@@ -13,16 +13,16 @@ class ReservationController extends Controller
         return view('reservations.index', ['reservations' => $reservations]);
     }
 
-    public function create() {
-        return view('reservations.create');
-    }
-
     public function removeMembers(Request $request, $id){
         $reservation = Reservation::findOrFail($id);
         $idsToKeep = array_filter(array_keys($request->all()), 'is_numeric');
         $reservation->members()->sync($idsToKeep);
 
         return redirect()->back();
+    }
+
+    public function store(Request $request){
+        dd('test');
     }
 
     public function addUsers(Request $request, $id){
@@ -38,7 +38,7 @@ class ReservationController extends Controller
         $user_id = $request->user_id;
         $reservation->members()->detach($user_id);
 
-    return redirect()->back();
+        return redirect()->back();
     }
 
     public function show($id) { 

@@ -23,7 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/reservations/{id}/add-users', [ReservationController::class, 'addUsers'])->name('reservations.add-users');
     Route::delete('/reservations/{id}/sign-out', [ReservationController::class, 'signOut'])->name('reservations.sign-out');
 
-    Route::resource('reservations', ReservationController::class)->except(['create', 'edit', 'store']);
+    Route::patch('/notifications/{id}/read', [NotificationsController::class, 'read'])->name('notifications.read');
+
+    Route::resource('reservations', ReservationController::class)->except(['create', 'edit']);
     Route::resource('users', UserController::class)->except(['create', 'edit', 'create', 'store']);
     Route::resource('notifications', NotificationsController::class)->only(['index', 'store', 'show']);
 });

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -23,5 +24,9 @@ class User extends Authenticatable
 
     public function reservations(): BelongsToMany{
         return $this->belongsToMany(Reservation::class, 'users_reservations');
+    }
+
+    public function notifications(): HasMany{
+        return $this->hasMany(Notification::class);
     }
 }
