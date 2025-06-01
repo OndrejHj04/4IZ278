@@ -8,8 +8,10 @@
                         <x-table-cell>{{ $reservation->name }}</x-table-cell>
                         <x-table-cell>{{ $reservation->date() }}</x-table-cell>
                         <x-table-cell>
-                            <form>
+                            <form method="POST" action="{{ route('reservations.sign-out', $reservation->id) }}">
                                 @csrf
+                                @method('DELETE')
+                                <input hidden name="user_id" value="{{ Auth::user()->id }}" />
                                 <button class="text-red-500 underline font-semibold cursor-pointer">sign out</button>
                             </form>
                         </x-table-cell>

@@ -33,6 +33,14 @@ class ReservationController extends Controller
         return redirect()->back();
     }
 
+    public function signOut(Request $request, $id){
+        $reservation = Reservation::findOrFail($id);
+        $user_id = $request->user_id;
+        $reservation->members()->detach($user_id);
+
+    return redirect()->back();
+    }
+
     public function show($id) { 
         $reservation = Reservation::findOrFail($id);
 

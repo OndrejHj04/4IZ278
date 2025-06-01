@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/reservations/{id}/remove-members', [ReservationController::class, 'removeMembers'])->name('reservations.remove-members');
     Route::post('/reservations/{id}/add-users', [ReservationController::class, 'addUsers'])->name('reservations.add-users');
+    Route::delete('/reservations/{id}/sign-out', [ReservationController::class, 'signOut'])->name('reservations.sign-out');
 
     Route::resource('reservations', ReservationController::class)->except(['create', 'edit', 'store']);
     Route::resource('users', UserController::class)->except(['create', 'edit', 'create', 'store']);
