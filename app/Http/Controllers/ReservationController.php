@@ -26,8 +26,8 @@ class ReservationController extends Controller
     public function store(Request $request){
         $validated = $request->validate([
             'name' => 'required|string|min:4|max:255',
-            'from_date' => 'required|date|before:to_date',
-            'to_date' => 'required|date|after:from_date',
+            'from_date' => 'required|date|after:today|before:to_date',
+            'to_date' => 'required|date|after:today|after:from_date',
         ]);
 
         $validated['leader_id'] = Auth::user()->id;
@@ -69,8 +69,8 @@ class ReservationController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|min:4|max:255',
             'status' => 'required',
-            'from_date' => 'required|date|before:to_date',
-            'to_date' => 'required|date|after:from_date',
+            'from_date' => 'required|date|after:today|before:to_date',
+            'to_date' => 'required|date|after:today|after:from_date',
         ]);
         $reservation = Reservation::findOrFail($id);
 
