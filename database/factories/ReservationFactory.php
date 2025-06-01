@@ -17,11 +17,14 @@ class ReservationFactory extends Factory
      */
     public function definition(): array
     {
+        $fromDate = fake()->dateTimeBetween('now', '+1 year');
+        $toDate = fake()->dateTimeBetween($fromDate, '+1 year');
+
         return [
             'name' => fake()->safeColorName(),
             'leader_id' => User::getRandomUserId(),
-            'from_date' => fake()->date(),
-            'to_date' => fake()->date(),
+            'from_date' => $fromDate->format('Y-m-d'),
+            'to_date' => $toDate->format('Y-m-d'),
         ];
     }
 }
