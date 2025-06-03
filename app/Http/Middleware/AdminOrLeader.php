@@ -17,7 +17,7 @@ class AdminOrLeader
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $reservation = Reservation::find($request->route('reservation'));
+        $reservation = Reservation::findOrFail($request->route('reservation'));
         $leader_id = $reservation->leader->id;
 
         $isAdmin = Auth::user()->role == 'admin';

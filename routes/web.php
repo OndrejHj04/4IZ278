@@ -28,8 +28,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/reservations/{id}/sign-out', [ReservationController::class, 'signOut'])->name('reservations.sign-out');
     });
 
-    Route::resource('reservations', ReservationController::class)->only(['show', 'update', 'destroy'])->middleware(AdminOrLeader::class);
     Route::resource('reservations', ReservationController::class)->only(['index', 'create', 'store']);
+    Route::resource('reservations', ReservationController::class)->only(['show', 'update', 'destroy'])->middleware(AdminOrLeader::class);
 
     Route::resource('notifications', NotificationsController::class)->only(['index'])->middleware(Admin::class);
 
