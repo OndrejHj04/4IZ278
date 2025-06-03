@@ -5,7 +5,7 @@ use App\ReservationStatus;
 
 <x-sidebar>
     <div class="flex-1 flex flex-col gap-2">
-        <x-table dataLength="{{ count($notifications) }}">
+        <x-table :dataLength="count($notifications)">
             <x-table-head>
                 <x-table-cell header>
                     Date

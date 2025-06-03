@@ -76,7 +76,7 @@ use App\ReservationStatus;
     <form method="POST" action="{{ route('reservations.remove-members', $reservation->id) }}" class="flex flex-col gap-3">
         @csrf
         <h2 class="text-center text-xl">Reservation members</h2>
-        <x-table class="mb-2" dataLength="{{ count($reservation_members) }}">
+        <x-table class="mb-2" :dataLength="count($reservation_members) ">
             <x-table-body>
                 @foreach($reservation_members as $member)
                     <x-table-row>
@@ -94,7 +94,7 @@ use App\ReservationStatus;
     <form method="POST" action="{{ route('reservations.add-users', $reservation->id) }}" class="flex flex-col gap-3">
         @csrf
         <h2 class="text-center text-xl">Add new users to reservation</h2>
-        <x-table class="mb-2" dataLength="{{ count($reservation_users_outside) }}">
+        <x-table class="mb-2" :dataLength="count($reservation_users_outside) ">
             <x-table-body>
                 @foreach($reservation_users_outside as $user)
                     <x-table-row>

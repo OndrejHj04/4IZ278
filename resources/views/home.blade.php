@@ -22,7 +22,7 @@ use App\Helpers\DateFormatter;
 <x-sidebar>
     <div method="POST" class="flex flex-col gap-3">
         <h2 class="text-center text-xl">My reservations</h2>
-        <x-table class="mb-2" dataLength="{{ count($user_reservations) }}">
+        <x-table class="mb-2" :dataLength="count($user_reservations)">
             <x-table-body>
                 @foreach($user_reservations as $reservation)
                     <x-table-row>
@@ -44,7 +44,7 @@ use App\Helpers\DateFormatter;
 
     <div method="POST" class="flex flex-col gap-3">
         <h2 class="text-center text-xl">All future reservations</h2>
-        <x-table class="mb-2" dataLength="{{ count($future_reservations) }}">
+        <x-table class="mb-2" :dataLength="count($future_reservations)">
             <x-table-body>
                 @foreach($future_reservations as $reservation)
                     <x-table-row>
@@ -62,7 +62,7 @@ use App\Helpers\DateFormatter;
 
     <div method="POST" class="flex flex-col gap-3 max-w-[500px]">
         <h2 class="text-center text-xl">My notifications</h2>
-        <x-table class="mb-2" dataLength="{{ count($user_notifications) }}">
+        <x-table class="mb-2" :dataLength="count($user_notifications)">
             <x-table-body>
                 @foreach($user_notifications as $notification)
                     <x-table-row>
@@ -75,7 +75,7 @@ use App\Helpers\DateFormatter;
                         <x-table-cell>obdrženo: {{ DateFormatter::timeFromNow($notification->created_at) }}</x-table-cell>
                         <x-table-cell>
                             @if(!$notification->read)
-                                <form method="POST" action="{{ route('notifications.read', $notification->id)  }}">
+                                <form method="POST" action="{{ route('notifications.read', $notification->id) }}">
                                     @csrf
                                     @method('PATCH')
                                     <button class="text-green-600 font-semibold underline cursor-pointer">Přečíst</button>

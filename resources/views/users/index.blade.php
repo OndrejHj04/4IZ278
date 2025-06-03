@@ -4,7 +4,7 @@ use App\Helpers\DateFormatter;
 
 <x-sidebar>
     <div class="flex-1 flex flex-col gap-2">
-        <x-table dataLength="{{ count($users) }}">
+        <x-table :dataLength="count($users) ">
             <x-table-head>
                 <x-table-cell header>
                     Name
