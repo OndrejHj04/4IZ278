@@ -20,7 +20,7 @@ use App\Helpers\DateFormatter;
 </script>
 
 <x-sidebar>
-    <div method="POST" class="flex flex-col gap-3">
+    <div method="POST" class="flex flex-col gap-3 overflow-y-auto">
         <h2 class="text-center text-xl">My reservations</h2>
         <x-table class="mb-2" :dataLength="count($user_reservations)">
             <x-table-body>
@@ -42,7 +42,7 @@ use App\Helpers\DateFormatter;
         </x-table>
     </div>
 
-    <div method="POST" class="flex flex-col gap-3">
+    <div method="POST" class="flex flex-col gap-3 overflow-y-auto">
         <h2 class="text-center text-xl">All future reservations</h2>
         <x-table class="mb-2" :dataLength="count($future_reservations)">
             <x-table-body>
@@ -60,7 +60,7 @@ use App\Helpers\DateFormatter;
     </div>
 
 
-    <div method="POST" class="flex flex-col gap-3 max-w-[500px]">
+    <div method="POST" class="flex flex-col gap-3 max-w-[500px] overflow-y-auto">
         <h2 class="text-center text-xl">My notifications</h2>
         <x-table class="mb-2" :dataLength="count($user_notifications)">
             <x-table-body>
